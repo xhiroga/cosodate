@@ -21,6 +21,13 @@ class NewsList extends Component {
       {title:'「三鷹市私立幼稚園協会」からのお知らせ', publisher:'子ども育成課', date:'2014年06月06日'},
       {title:'私立幼稚園等の補助金についてはこちらをご覧ください。', publisher:'子ども育成課', date:'2011年06月20日'},
     ];
+    // // 本当はこうしたいんだけど Error: Network Error で困ってます
+    // axios.get('https://linkdata.org/api/1/rdf1s5226i/cosodate_mitaka_unofficial_rdf.json')
+    // .then(function (response) {console.log(response);})
+    // .catch(function (error) {console.log(error);});
+    // console.log('baa');
+    // // なんでconsoleに出力されないのかと思ってたけど、うっかりしてた。非同期だから後から来るんだった。
+    
     this.setState({newsList:got});
   };
 
