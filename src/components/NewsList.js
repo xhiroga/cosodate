@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import News from './News';
+import axios from 'axios';
+import NewsElement from './NewsElement';
+import {StackNavigator} from 'react-navigation';
 
 // jsonを生成
 // mapしてニュースを作成する.　stateをオーバーライドする
@@ -8,6 +10,10 @@ import News from './News';
 class NewsList extends Component {
 
   state = { newsList : [] };
+
+  constructor(){
+    super();
+  };
 
   componentWillMount() {
     console.log('hoge');
@@ -21,24 +27,24 @@ class NewsList extends Component {
       {title:'「三鷹市私立幼稚園協会」からのお知らせ', publisher:'子ども育成課', date:'2014年06月06日'},
       {title:'私立幼稚園等の補助金についてはこちらをご覧ください。', publisher:'子ども育成課', date:'2011年06月20日'},
     ];
-    // // 本当はこうしたいんだけど Error: Network Error で困ってます
-    // axios.get('https://linkdata.org/api/1/rdf1s5226i/cosodate_mitaka_unofficial_rdf.json')
-    // .then(function (response) {console.log(response);})
-    // .catch(function (error) {console.log(error);});
-    // console.log('baa');
-    // // なんでconsoleに出力されないのかと思ってたけど、うっかりしてた。非同期だから後から来るんだった。
-    
+    // 本当はこうしたいんだけど Error: Network Error で困ってます
+    axios.get('http://linkdata.org/api/1/rdf1s5226i/cosodate_mitaka_unofficial_rdf.json')
+      .then(function (response) {console.log(response);})
+      .catch(function (error) {console.log(error);});
+    console.log('baa');
+    // なんでconsoleに出力されないのかと思ってたけど、うっかりしてた。非同期だから後から来るんだった。
+
     this.setState({newsList:got});
   };
 
   renderNews(){
     return this.state.newsList.map(news =>
-      <News key={news.title} news={news}/>
+      <NewsElement key={news.title} news={news}/>
     );
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     return (
       <ScrollView>
         {this.renderNews()}
