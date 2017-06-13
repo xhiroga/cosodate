@@ -1,47 +1,72 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Text, View } from 'react-native';
+import Home from './components/Home'
 import Header from './components/Header';
-import NewsList from './components/NewsList';
-import News from './components/News.js';
-import { StackNavigator } from 'react-navigation';
+import List from './components/List';
+import News from './components/News';
+import { StackNavigator } from 'react-navigation'; //これは子画面側では定義しなくて良い
 
-// const App = () => (
-//   <View style={{ flex: 1 }}>
-//     <Header />
-//     <News />
-//   </View>
-// );
-
-const List = ({navigation}) => (
-    <View style={{ flex: 1 }}>
-      <Header />
-      <NewsList navigation={navigation} />
-    </View>
+const MyHome = ({navigation}) => (
+  <Home navigation={navigation} />
 );
-// 引数の渡し方を毎回忘れる。(props)で渡してconst{}にパースするか、または{x,y,z}で渡す
+// jsx内で変数にアクセスするには{}
+// return宣言を省けるところは省く。
 
-// const Info = ({navigation}) => (
-//   <View style={{ flex: 1 }}>
-//     <Header />
-//     <News navigation={navigation} />
-//   </View>
-// );
+class MySearch extends Component {
+
+  constructor(props){ // propsはjsonが入ってる. だから{navigationで受け取っても構わない}
+    super(props);
+  };
+
+  render(){
+    return(
+      <View style={{ flex: 1 }}>
+        <Header />
+        <List navigation={ this.props.navigation } />
+      </View>
+    );
+    //クラス内変数にアクセスする時はthisをつける！this.navigator... 一つの匿名関数でスコープを共有することが多いので忘れがち。
+  };
+};
+// navigateの引数はjsonで渡す
+// 将来的にはInfoの先のComponentを、Infoの種類で呼び分ける
+
+
+const MyInfo = ({navigation}) => (
+    <News navigation={navigation} news={navigation.state.params.news}/>
+);
+// class MyInfo extends Component {
+//
+//   constructor(props){ // propsはjsonが入ってる. だから{navigationで受け取っても構わない}
+//     super(props);
+//     debugger;
+//   };
+//
+//   render(){
+//     return(
+//       <News navigation={this.props.navigation} news={this.props.navigatoin.state.params.news}/>
+//     );
+//     //クラス内変数にアクセスする時はthisをつける！this.navigator... 一つの匿名関数でスコープを共有することが多いので忘れがち。
+//   };
+// };
 
 const App = StackNavigator(
   {
-    // Home: {
-    //   screen: List,
-    // }, // 最後に実装
-    Search: {
-      screen: List,
+    Home: {
+      screen: MyHome,
     },
-    // Page:{
-    //   screen: Info,
-      // pathはそのうち追加する。DeepLinkingって？
-    // },
+    Search: {
+      screen: MySearch,
+    },
+    Info:{
+      // Navigatorに登録する画面に引数を渡す時は、navigationのstateとして渡す必要があり、
+      // そのためにpathとして宣言しないといけないっぽい(screen名/:paramの要素名)
+      path: 'MyInfo/:news',
+      screen: MyInfo,
+    },
   },
   {
-    initialRouteName: 'Search',
+    initialRouteName: 'Search', //ほんとはHomeなんだけどテストが面倒なので
     headerMode: 'none',
   },
 );

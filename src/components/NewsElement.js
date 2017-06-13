@@ -1,14 +1,15 @@
 import React from 'react';
 import { TouchableHighlight, View, Text } from 'react-native';
 
-const NewsElement = ({news}) => {
-  // debugger;
-  const {title, publisher, date} = news;
+const NewsElement = (props) => {
+
+  const {news, onPress} = props;
+  const {title, author, date, text, link} = news;
 
   return (
 
     // <Text> News here! </Text>
-    <TouchableHighlight underlayColor={'#f3f3f2'}>
+    <TouchableHighlight underlayColor={'#f3f3f2'} onPress = {()=>{onPress(title, author, date, text, link)}}>
       <View style={styles.rowContainer}>
 
           <View style={styles.rowDetailsContainer}>
@@ -16,7 +17,7 @@ const NewsElement = ({news}) => {
                   {title}
               </Text>
               <Text style={styles.rowDetailsLine}>
-                  Posted by {publisher} | {date}
+                  Posted by {author} | {date}
               </Text>
               <View style={styles.separator}/>
           </View>
