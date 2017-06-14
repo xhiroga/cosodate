@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import Home from './components/Home'
 import Header from './components/Header';
 import List from './components/List';
@@ -16,6 +16,12 @@ class MySearch extends Component {
 
   constructor(props){ // propsはjsonが入ってる. だから{navigationで受け取っても構わない}
     super(props);
+  };
+
+  static navigationOptions = {
+    // title: <Text>わーい</Text>
+    title: <Image source ={require('./img/logo.gif')} resizeMode = "contain" style={{height:50}} />
+    // navigationOptionsのtitleにjsxが埋まってるとエラーになる...
   };
 
   render(){
@@ -35,20 +41,7 @@ class MySearch extends Component {
 const MyInfo = ({navigation}) => (
     <News navigation={navigation} news={navigation.state.params.news}/>
 );
-// class MyInfo extends Component {
-//
-//   constructor(props){ // propsはjsonが入ってる. だから{navigationで受け取っても構わない}
-//     super(props);
-//     debugger;
-//   };
-//
-//   render(){
-//     return(
-//       <News navigation={this.props.navigation} news={this.props.navigatoin.state.params.news}/>
-//     );
-//     //クラス内変数にアクセスする時はthisをつける！this.navigator... 一つの匿名関数でスコープを共有することが多いので忘れがち。
-//   };
-// };
+
 
 const App = StackNavigator(
   {
@@ -67,7 +60,6 @@ const App = StackNavigator(
   },
   {
     initialRouteName: 'Search', //ほんとはHomeなんだけどテストが面倒なので
-    headerMode: 'none',
   },
 );
 
