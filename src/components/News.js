@@ -12,7 +12,7 @@ import {Text, View, ScrollView, TouchableOpacity, Linking} from 'react-native';
 
 const News = (props) => {
 
-  const {navigation, news} = props
+  const {navigation, info} = props
 
   const {
     referenceContentStyle
@@ -23,16 +23,16 @@ const News = (props) => {
     <ScrollView style = {{paddingTop:10}}>
       <View style={styles.titleContetStyle_News}>
         <Text style={styles.titleTextStyle}>
-          {news.title}
+          {info.title}
         </Text>
         <View style={{flexDirection:'row'}}>
-          <Text style={styles.authorTextStyle}> {news.author} {news.date} </Text>
+          <Text style={styles.authorTextStyle}> {info.author} {info.date} </Text>
         </View>
       </View>
 
       <View>
         <Text>
-          {news.text}
+          {info.text}
         </Text>
       </View>
 
@@ -43,7 +43,7 @@ const News = (props) => {
         <Text style={styles.referenceTitle}>
           外部リンク
          </Text>
-        <Text> {news.link} </Text>
+        <Text> {info.link} </Text>
       </TouchableOpacity>
     </ScrollView>
   );
