@@ -1,16 +1,13 @@
 import React from 'react';
 import { TouchableHighlight, View, Text } from 'react-native';
+import { Actions } from 'react-native-router-flux'
 
 const InfoItem = (props) => {
 
-  const {info, onPress} = props;
-  console.log(info)
-  const {title, author, date, text, link} = info;
+  const {title, author, date, text, link} = props.info;
 
   return (
-
-    // <Text> News here! </Text>
-    <TouchableHighlight underlayColor={'#f3f3f2'} onPress = {()=>{onPress(title, author, date, text, link)}}>
+    <TouchableHighlight underlayColor={'#f3f3f2'} onPress = {()=>Actions.info({ info: props.info })}>
       <View style={styles.rowContainer}>
 
           <View style={styles.rowDetailsContainer}>

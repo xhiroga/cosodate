@@ -11,6 +11,12 @@ class App extends Component {
 
   componentWillMount() {
     console.log('ほんとはここでLinkDataからデータをフェッチする')
+    
+    // axios.get('http://linkdata.org/api/1/rdf1s5226i/cosodate_mitaka_unofficial_rdf.json')
+    //   .then(function (response) {console.log(response);})
+    //   .catch(function (error) {console.log(error);});
+    // Error: Network Errorの場合はinfo.plist(複数あるので注意)を見る
+
   }
 
 
