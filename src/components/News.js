@@ -30,9 +30,9 @@ const News = (props) => {
         </View>
       </View>
 
-      <View>
+      <View style={{padding:5}}>
         <Text>
-          {info.text}
+          {info.text.split("  ").map( m => { return(<Text>{m}{"\n"}</Text>) } )}
         </Text>
       </View>
 

@@ -6,14 +6,37 @@ import News from './components/News';
 
 
 const RouterComponent = () => {
+
+  const { navigationBarTitleImageStyle } = styles
+
   return (
     <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene key="home" component={Home} title="Home" />
-      <Scene key="list" component={List} title="List" />
-      <Scene key="info" component={News} title="Info" />
+      <Scene
+        key="container"
+        navigationBarTitleImage={require('./img/logo.gif')}
+        navigationBarTitleImageStyle={navigationBarTitleImageStyle}
+        >
+        <Scene key="home" component={Home} />
+        <Scene key="list" component={List} title="List" />
+        <Scene key="info" component={News} title="Info" />
+      </Scene>
     </Router>
   );
 };
+
+const styles = {
+  navigationBarTitleImageStyle : {
+    // デフォルト..
+    // "width": 180,
+    // "height": 120,
+    // "overflow": "hidden",
+    // "alignSelf": "center",
+    height: 30,
+    resizeMode:"center", //cover:比率そのまま横幅に合わせる(デフォルト) stretch:比率を無視して縦幅に合わせる
+    // backgroundColor: 'blue'
+
+  }
+}
 
 export default RouterComponent;
 

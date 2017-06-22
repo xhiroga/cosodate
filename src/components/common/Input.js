@@ -37,7 +37,7 @@ const styles = {
     height: 40,
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center'
+    // alignItems: 'center'
   }
 };
 

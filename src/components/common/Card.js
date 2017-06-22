@@ -27,3 +27,5 @@ const styles = {
 };
 
 export { Card };
+// 1.exportを{}で囲う 2. commonフォルダ直下にindex.jsを配置し、そこに全要素をimportする
+// 以上2点でclass componentへのimportが簡便になる。

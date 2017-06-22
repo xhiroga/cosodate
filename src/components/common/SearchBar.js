@@ -1,15 +1,31 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image, Text, TextInput } from 'react-native';
+import { connect } from 'react-redux';
 import { Input } from './'
 
 const SearchBar = (props) => {
 
+  const {containerStyle, pictStyle, inputStyle} = styles
+
   return (
-    <View style={[styles.containerStyle, props.style]}>
-      <Input />
+    <View style={[containerStyle, props.style]}>
+      <Image
+        source ={require('./img/magnifier.png')}
+        resizeMode = "contain"
+        style={pictStyle}
+      />
+      <TextInput
+        placeholder="何かお困りですか？"
+        autoCorrect={false}
+        value={props.inputtingWord}
+        style={inputStyle}
+      />
     </View>
   );
 };
+
+
+
 
 const styles = {
   containerStyle: {
@@ -20,9 +36,27 @@ const styles = {
     flexDirection: 'row',
     borderColor: '#ddd',
     position: 'relative'
+  },
+  pictStyle: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    flex: 0,
+    height:23, width:23,
+  },
+  inputStyle: {
+    color: '#000',
+    paddingRight: 5,
+    paddingLeft: 5,
+    fontSize: 18,
+    lineHeight: 23,
+    flex: 2
   }
 };
 
-export { SearchBar };
-// 1.exportを{}で囲う 2. commonフォルダ直下にindex.jsを配置し、そこに全要素をimportする
-// 以上2点でclass componentへのimportが簡便になる。
+const mapStateToProps = ({ search }) => {
+  const { inputtingWord } = search;
+
+  return { inputtingWord };
+};
+
+export default connect(mapStateToProps)(SearchBar);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, ListView } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux'
-import {SearchBar} from './common'
+import SearchBar from './common/SearchBar';
 import InfoItem from './InfoItem';
 
 class List extends Component {
