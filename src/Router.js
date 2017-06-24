@@ -13,7 +13,7 @@ const RouterComponent = () => {
     <Router sceneStyle={{ paddingTop: 65 }}>
       <Scene
         key="container"
-        navigationBarTitleImage={require('./img/logo.gif')}
+        navigationBarTitleImage={require('./img/logoRe.gif')}
         navigationBarTitleImageStyle={navigationBarTitleImageStyle}
         >
         <Scene key="home" component={Home} />
