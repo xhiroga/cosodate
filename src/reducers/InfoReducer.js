@@ -1,5 +1,25 @@
 import data from './News.json';
 
+const INITIAL_STATE = {
+  topMode:      "",
+  topText:      "",
+  selectedList: []
+}
+
+
+export default (state = INITIAL_STATE, action) => {
 console.log("here InfoReducer, export data", data)
-export default () => data;
-//将来的には施設,サービス,ニュース情報をここで統合する。
+console.log("and this is action", action)
+  switch (action.type) {
+    case "setTopMode":
+      return{ ...state, topMode: action.payload }
+    case "setTopText":
+      return{ ...state, topText: action.payload }
+    case "setSelectedList":
+      return{ ...state, selectedList: action.payload}
+
+
+    default:
+      return state;
+  }
+};

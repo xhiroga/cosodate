@@ -1,0 +1,55 @@
+{
+  "region": "japan-tokyo-mitaka",
+  "category":"info",
+  "lang":"jp",
+  "data":[
+    {
+      "category":"info",
+      "name": "東京都母子及び父子福祉資金",
+      "type":"welfare",
+      "text":"母子及び父子家庭のお子さんの修学（高校・大学など）や、就業のための技能習得などに必要な資金の貸付を行っています。    対象    都内に6ヶ月以上住んでいて、20歳未満の子を扶養している母子家庭の母及び父子家庭の父  内容    母子及び父子家庭のお子さんの修学（高校・大学など）や、就業のための技能習得などに必要な資金の貸付を行っています。  連帯保証人    原則として都内に6ヶ月以上居住し、独立して生計を立ててる方でこの資金について他に保証をしていない方が一人必要です。  償還方法    期限内に月賦・半年賦または年賦による元利均等償還となります。",
+      "contact":"三鷹市子ども政策部子育て支援課  電話：0422-45-1151　内線：2754～2755  時間：8:30～17:00（土・日・祝日・年末年始を除く）",
+      "link": "",
+      "tummy":"true","age0":"true","age1":"true","age2":"false","age3":"false","age4":"false","age5":"false","over6":"false",
+      "pregnant":"false","birth":"false",
+      "nursery":"false","kindergarten":"false","school":"false",
+      "move-in":"false","disabilities":"false","sick":"false","economic":"true"
+    },
+    {
+      "category":"info",
+      "name": "都バス・都電・都営地下鉄無料乗車券の交付",
+      "type":"welfare",
+      "text":"児童扶養手当を受けている方または同一世帯の方は都バス・都電・都営地下鉄の年間無料乗車券の交付が受けられます。    対象    児童扶養手当受給者または同一の世帯員で、都営交通を利用する方のうちの一人  内容    都バス・都電・都営地下鉄の年間無料乗車券の交付が受けられます。年間無料乗車券は使用者の誕生月有効期限の券で1年間有効となっています。  交付方法    次の書類等をお持ちになり、子育て支援課で交付を受けてください。  【持ち物】  児童扶養手当証書",
+      "contact":"三鷹市子ども政策部子育て支援課  電話：0422-45-1151　内線：2754～2755  時間：8:30～17:00（土・日・祝日・年末年始を除く）",
+      "link": "",
+      "tummy":"true","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"true",
+      "pregnant":"false","birth":"true",
+      "nursery":"false","kindergarten":"false","school":"false",
+      "move-in":"false","disabilities":"true","sick":"false","economic":"true"
+    },
+    {
+      "category":"info",
+      "name": "福祉バス（ふれあい号）",
+      "type":"welfare",
+      "text":"市内の福祉団体等の福祉活動に供するため福祉バス「ふれあい号」を運行しています。    内容    市内の福祉団体等の福祉活動に供するため福祉バス「ふれあい号」を運行しています。使用できるのは、市町が定めた福祉関係団体及び福祉関係者で、次のいずれかの使用時に該当する場合です。  老人の福祉活動。  心身障がい者（児）の福祉活動  精神障がい者の福祉活動  保育園及び家庭保育室の園（室）外保育  生活保護家庭及び母子家庭の福祉活動  児童館及び学童保育所の館（所）外活動  福祉団体等の福祉活動  その他公益目的のため特に市長が認めるとき  運行は、原則として日帰り（片道150キロ以内）。宿泊を伴う場合は1泊（片道250キロ以内）で週1回の運行を限度とします。使用料は無料ですが、有料道路料金、駐車料金等は使用者の負担となります。    申込み    地域福祉係までお申込みください。",
+      "contact":"三鷹市健康福祉部地域福祉課地域福祉係  電話：0422-45-1151　内線：2613  時間：8:30～17:00（土・日・祝日・年末年始を除く）",
+      "link": "",
+      "tummy":"false","age0":"false","age1":"false","age2":"false","age3":"false","age4":"false","age5":"false","over6":"false",
+      "pregnant":"false","birth":"true",
+      "nursery":"false","kindergarten":"false","school":"false",
+      "move-in":"false","disabilities":"false","sick":"false","economic":"false"
+    },
+    {
+      "category":"info",
+      "name": "ひとり親家庭レクリエーション",
+      "type":"welfare",
+      "text":"ひとり親世帯（母子世帯、父子世帯）の親と子どもを対象に年1回、行楽行事に優待します。    対象    ひとり親世帯の親と子供  内容    年1回、行楽行事に優待します。実施方法等は、「広報みたか」でお知らせします。  ",
+      "contact":"社会福祉協議会  電話：0422-45-1151　内線：3511  時間：8:30～17:00（土・日・祝日・年末年始を除く）  ホームページ：社会福祉協議会",
+      "link": "",
+      "tummy":"true","age0":"false","age1":"false","age2":"false","age3":"false","age4":"false","age5":"false","over6":"false",
+      "pregnant":"false","birth":"false",
+      "nursery":"false","kindergarten":"false","school":"false",
+      "move-in":"false","disabilities":"false","sick":"false","economic":"false"
+    }
+  ]
+}

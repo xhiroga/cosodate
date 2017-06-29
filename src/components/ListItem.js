@@ -4,15 +4,19 @@ import { Actions } from 'react-native-router-flux'
 
 const InfoItem = (props) => {
 
-  const {title, author, date, text, link} = props.info;
+  console.log("here InfoItem, props->", props);
 
+  const {name, author, date, text, link} = props.info;
+  // 別に受け取れなくてもエラーは出ない
+
+  // 本当はnameをkeyにとかやっちゃダメなんですけど
   return (
-    <TouchableHighlight underlayColor={'#f3f3f2'} onPress = {()=>Actions.info({ info: props.info })}>
+    <TouchableHighlight key={name} underlayColor={'#f3f3f2'} onPress = {()=>Actions.info({ info: props.info })}>
       <View style={styles.rowContainer}>
 
           <View style={styles.rowDetailsContainer}>
-              <Text style={styles.rowTitle}>
-                  {title}
+              <Text style={styles.rowname}>
+                  {name}
               </Text>
               <Text style={styles.rowDetailsLine}>
                   Posted by {author} | {date}
@@ -43,7 +47,7 @@ var styles = {
   rowDetailsContainer: {
       flex: 1,
   },
-  rowTitle: {
+  rowname: {
       fontSize: 15,
       textAlign: 'left',
       marginTop: 10,
