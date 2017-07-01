@@ -1,16 +1,12 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, Linking } from 'react-native'
 import { Header } from './common'
-import {
-  // Health,
-  // Facilities,
-  Subsidy,
-  Welfare
-} from './categories'
-import Facilities from './categories/Facilities'
 
-import InfoText from './InfoText'
 import { TEXTS } from '../Texts'
+
+import Facilities from './categories/Facilities'
+import Subsidy from './categories/Subsidy'
+
 
 const Info = (props) => {
 
@@ -41,7 +37,7 @@ const renderCategorizedContent = (props) => {
         case "health":
           return
         case "subsidy":
-          return
+          return <Subsidy info={ props.info } />
         case "welfare":
           return
 
@@ -65,7 +61,7 @@ const renderText = (props) => {
 const renderExternalLink = (props) => {
   if ( props.info.link!== "" ){
     return (
-      <TouchableOpacity style={ styles.linkStyle } onPress={ ()=>{Linking.openURL( props.info.link )} }>
+      <TouchableOpacity style={ styles.linkStyle } onPress={ ()=>{ Linking.openURL( props.info.link )} }>
         <Text style={ styles.titleStyle }>{TEXTS["link"]["jp"]}</Text>
       </TouchableOpacity>
     )

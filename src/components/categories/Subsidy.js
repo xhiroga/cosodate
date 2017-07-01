@@ -1,93 +1,124 @@
-// Listからもらった情報を表示するだけのビュー
-// 将来的に施設用、サービス用に拡張版を作る
+import React, { Component } from 'react'
+import {Text, Image, View, TouchableOpacity, FlatList } from 'react-native'
+import { connect } from 'react-redux'
 
-import React from 'react';
-import {Text, View, ScrollView, TouchableOpacity, Linking} from 'react-native';
+import { TEXTS } from '../../Texts'
 
-const Subsidy = (props) => {
+import { moveSubsidySection } from '../../actions'
 
-  console.log("here subsidy, props ->", props)
+class Subsidy extends Component {
 
-  const {navigation, info} = props
+  componentWillMount(){
+    this.dataSource = []
 
-  const {
-    referenceContentStyle
-  } = styles;
+    this.props.localData["Facilities"]["data"].map( facility => {
+      if (facility["type"] === this.props.info.name){
+        this.dataSource.push(facility)
+      }
+    })
+    // console.log(this.dataSource)
+  }
 
-// 改行はこの子の仕事
-  return(
-    <ScrollView style = {{paddingTop:10}}>
-      <View style={styles.titleContetStyle_News}>
-        <Text style={styles.titleTextStyle}>
-          {info.name}
-        </Text>
-        <View style={{flexDirection:'row'}}>
-          <Text style={styles.authorTextStyle}> {info.author} {info.date} </Text>
-        </View>
-      </View>
-
-      <View style={{padding:5}}>
-        <Text>
-          {info.text.split("  ").map( m => { return(<Text>{m}{"\n"}</Text>) } )}
-        </Text>
-      </View>
-
-      <TouchableOpacity
-        onPress={ ()=>{Linking.openURL('http://www.city.mitaka.tokyo.jp/c_news/064/064574.html')} }
-        style={styles.referenceContentStyle}
+  renderTile(facility) {
+    return(
+      <View style={styles.tileStyle} key={facility.key}>
+        <Image
+          style={styles.imageStyle}
+          source={{ uri: facility.image_url }}
         >
-        <Text style={styles.referenceTitle}>
-          外部リンク
-         </Text>
-        <Text> {info.link} </Text>
+        </Image>
+        <Text style={{ marginTop:3, }}>
+          { facility.name }
+        </Text>
+      </View>
+    )
+  }
+
+  renderTab(section) {
+
+    let tabStyle = [styles.normalTabStyle]
+    let textStyle = [styles.tabTextStyle]
+
+    if (section === this.props.subsidySection){
+      tabStyle.push({ borderColor:'#FF6600', borderBottomWidth:1 })
+      textStyle.push({ color:'#FF6600' })
+    }
+
+    return (
+      <TouchableOpacity
+        key={section}
+        style={tabStyle}
+        onPress={ () => this.props.moveSubsidySection(section) }
+      >
+        <Text style={textStyle}>
+          {TEXTS[section]["jp"]}
+        </Text>
       </TouchableOpacity>
-    </ScrollView>
-  );
+    )
+  }
 
-};
 
-//218	233	218	;
-// 多分navigation={navigation}するとheaderが召喚できる
+  render() {
+    console.log("this.props.subsidySection",this.props.subsidySection)
+    return(
+      <View sytle={{marginTop:9, marginBottom:9}}>
+        <View style={styles.tabBarStyle}>
+          { subsidySections.map( section => this.renderTab(section) ) }
+        </View>
+        <Text style={{lineHeight:18}}>
+          {this.props.info[this.props.subsidySection].replace(/\s\s/g, '\n')}
+        </Text>
+      </View>
+    )
+  }
+
+}
+
+const subsidySections = [
+  "recepient",
+  "amount_period",
+  "apply",
+  "procedure"
+]
+
 
 const styles = {
-  titleContetStyle_News:{
-    backgroundColor: '#D5E8D5',
-    padding:5,
-    marginTop:5,
-    marginBottom:5,
+  tabBarStyle:{
+    margin:12,
+    backgroundColor:"#EFEFF2",
+    borderRadius:5,
+    flexDirection: 'row',
+    alignSelf:"center",
   },
-
-  titleTextStyle:{
-    flex:1,
-    fontSize:20,
-    textAlign: 'left',
-
+  normalTabStyle:{
+    padding:8
   },
-
-  authorTextStyle:{
-    flex:1,
-    textAlign: 'right'
-  },
-
-  referenceContentStyle:{
-    backgroundColor: '#F5F3EB',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 60,
-    paddingTop: 15,
-    shadowColor: '#000',
-    shadowOffset: {witdh:0, height:2},
-    shadowOpacity: 0.2,
-    elevation: 2,
-    position: 'relative',
-    marginTop: 10,
-    marginLeft: 10,
-    marginRight: 10
-  },
-  referenceTitle:{
+  tabTextStyle:{
 
   },
+  tileContainerStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+  tileStyle: {
+    marginTop:6,
+    marginBottom:6,
+    borderRadius:3,
+    // ここでサイズを指定するのは、写真サイズと文字サイズ両方考えなきゃいけないので面倒。
+    // flexで指定するとwrapが効かなくなる
+  },
+  imageStyle: {
+    height: 256,
+    width: 160
+  },
+}
 
-};
 
-export { Subsidy };
+const mapStateToProps = ( state ) => {
+  const { regions, lang, localData } = state.Init
+  const { subsidySection } = state.Tab
+  return { regions, lang, localData, subsidySection }
+}
+
+export default connect(mapStateToProps, { moveSubsidySection } )(Subsidy)

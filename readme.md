@@ -90,7 +90,8 @@ purpose...
 
 # デザイン
 ### base
-Theme Color:#C43B30
+Theme Color: "#C43B30"
+Gray: "#EFEFF2"
 
 ### Special Thanks!
 みたか子育てねっと:  http://www.kosodate.mitaka.ne.jp/

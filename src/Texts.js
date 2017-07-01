@@ -20,7 +20,22 @@ export const TEXTS =
     "en":"Setting",
     "jp":"設定",
   },
-
+  "recepient":{
+    "en":"Recepient",
+    "jp":"対象者",
+  },
+  "amount_period":{
+    "en":"Abmout&Period",
+    "jp":"支給額・時期",
+  },
+  "apply":{
+    "en":"Apply",
+    "jp":"申請",
+  },
+  "procedure":{
+    "en":"Procedure",
+    "jp":"認定後",
+  },
 };
 
 // そのうち「easy japanese」作りたい
