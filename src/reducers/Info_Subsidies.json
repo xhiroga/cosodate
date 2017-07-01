@@ -17,7 +17,7 @@
       "tummy":"true","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"true",
       "pregnant":"false","birth":"false",
       "nursery":"false","kindergarten":"false","school":"false",
-      "move-in":"false","disabilities":"false","sick":"true","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"true","economic":"false"
     },
     {
       "category":"info",
@@ -33,7 +33,7 @@
       "tummy":"true","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"true",
       "pregnant":"false","birth":"true",
       "nursery":"false","kindergarten":"false","school":"false",
-      "move-in":"false","disabilities":"false","sick":"true","economic":"true"
+      "move_in":"false","disabilities":"false","sick":"true","economic":"true"
     }
   ]
 }

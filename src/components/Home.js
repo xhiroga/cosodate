@@ -187,7 +187,7 @@ const conveter = {
   "syougakusei":["over6"],
   "premama":["pregnant","birth"],
   "fukushi":["economic","disabilities"],
-  "seikatu":["move-in","sick"],
+  "seikatu":["move_in","sick"],
   "hokyo":  ["nursery","kindergarten","school"]
 }
 

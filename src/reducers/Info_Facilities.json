@@ -13,7 +13,7 @@
       "tummy":"false","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"false",
       "pregnant":"false","birth":"false",
       "nursery":"false","kindergarten":"false","school":"false",
-      "move-in":"false","disabilities":"false","sick":"true","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"true","economic":"false"
     },
     {
       "category":"info",
@@ -25,7 +25,7 @@
       "tummy":"false","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"false",
       "pregnant":"false","birth":"false",
       "nursery":"false","kindergarten":"false","school":"false",
-      "move-in":"false","disabilities":"false","sick":"true","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"true","economic":"false"
     },
     {
       "category":"info",
@@ -37,7 +37,7 @@
       "tummy":"false","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"false",
       "pregnant":"false","birth":"false",
       "nursery":"true","kindergarten":"false","school":"false",
-      "move-in":"false","disabilities":"false","sick":"false","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     },
     {
       "category":"info",
@@ -49,7 +49,7 @@
       "tummy":"true","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"true",
       "pregnant":"false","birth":"false",
       "nursery":"true","kindergarten":"false","school":"false",
-      "move-in":"false","disabilities":"false","sick":"false","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     },
     {
       "category":"info",
@@ -61,7 +61,7 @@
       "tummy":"false","age0":"false","age1":"false","age2":"false","age3":"true","age4":"true","age5":"true","over6":"false",
       "pregnant":"false","birth":"false",
       "nursery":"false","kindergarten":"true","school":"false",
-      "move-in":"false","disabilities":"false","sick":"false","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     },
     {
       "category":"info",
@@ -73,7 +73,7 @@
       "tummy":"false","age0":"true","age1":"true","age2":"true","age3":"true","age4":"true","age5":"true","over6":"true",
       "pregnant":"false","birth":"false",
       "nursery":"false","kindergarten":"false","school":"true",
-      "move-in":"false","disabilities":"false","sick":"false","economic":"false"
+      "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     }
   ]
 }

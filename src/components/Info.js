@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View, Text, TouchableOpacity, Linking } from 'react-native'
 import { Header } from './common'
 import {
   // Health,
@@ -18,17 +18,19 @@ const Info = (props) => {
     <ScrollView style={{flex:1}}>
       <Header topText={ props.info.name } />
 
-      <View sytle={{margin:10}}>
-        { renderContent(props) }
+      <View style={styles.contentStyle}>
+        { renderText(props) }
+        { renderCategorizedContent(props) }
+        { renderExternalLink(props) }
+        { renderContact(props) }
       </View>
 
-      { renderContact(props) }
     </ScrollView>
   )
 
 };
 
-const renderContent = (props) => {
+const renderCategorizedContent = (props) => {
   const { category, type } = props.info
 
   switch ( category ){
@@ -37,11 +39,12 @@ const renderContent = (props) => {
         case "facility":
           return <Facilities info={ props.info } />
         case "health":
-          return <Text> { props.info.name } </Text>
+          return
         case "subsidy":
-          return <Text> { props.info.name } </Text>
+          return
         case "welfare":
-          return <Welfare info={ props.info } />
+          return
+
       }
     case "facility": // == category
       return <Text> { props.info.name } </Text>
@@ -50,37 +53,63 @@ const renderContent = (props) => {
   }
 }
 
+const renderText = (props) => {
+  console.log(props)
+  if ( props.info.text!== "" ){
+    return (
+      <Text style={{marginTop:9, marginBottom:9, lineHeight:18}}> { props.info.text.replace(/\s\s/g, '\n') } </Text>
+    )
+  }
+}
+
+const renderExternalLink = (props) => {
+  if ( props.info.link!== "" ){
+    return (
+      <TouchableOpacity style={ styles.linkStyle } onPress={ ()=>{Linking.openURL( props.info.link )} }>
+        <Text style={ styles.titleStyle }>{TEXTS["link"]["jp"]}</Text>
+      </TouchableOpacity>
+    )
+  }
+}
+
 const renderContact = (props) => {
   if ( props.info.contact!== "" ){
-    const {contactStyle, contactTitle, contactText} = styles
+    const {contactStyle, titleStyle, contactText} = styles
 
     return (
       <View style={ contactStyle }>
-        <Text style={ contactTitle }>{TEXTS["contact"]["jp"]}</Text>
-        <InfoText text={ props.info.contact } />
+        <Text style={ titleStyle }>{TEXTS["contact"]["jp"]}</Text>
+        <Text style={{marginTop:6, lineHeight:20}}> { props.info.contact.replace(/\s\s/g, '\n') } </Text>
       </View>
     )
   }
 }
 
 const styles = {
+  contentStyle:{
+    margin:18,
+  },
+  linkStyle:{
+    backgroundColor: '#C3D48F',
+    justifyContent: 'center',
+    alignItems:"flex-start",
+    marginTop:9,
+    marginBottom:9,
+    padding:9,
+    borderRadius:3,
+  },
   contactStyle:{
     backgroundColor: '#F5F3EB',
     justifyContent: 'center',
     alignItems:"flex-start",
-    margin:10,
+    marginTop:9,
+    marginBottom:9,
     padding:15,
     borderRadius:3,
-    // shadowColor: '#000',
-    // shadowOffset: {witdh:0, height:2},
-    // shadowOpacity: 0.2,
-    // elevation: 2,
-    position: 'relative',
   },
-  contactTitle:{
+  titleStyle:{
     fontSize:18,
     fontWeight: 'bold',
-    paddingBottom:5,
     alignSelf: "flex-start",
   }
 };
