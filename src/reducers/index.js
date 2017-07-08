@@ -7,7 +7,7 @@ import TabReducer from './TabReducer';
 export default combineReducers({
 
   Init:   InitReducer,
-  search: SearchReducer,
+  Search: SearchReducer,
   Info:   InfoReducer,
   Tab:    TabReducer,
 });

@@ -1,17 +1,88 @@
 import React, { Component } from 'react';
-import { View, Image, Text, TextInput } from 'react-native';
+import {
+  AsyncStorage,
+  View,
+  Image,
+  Text,
+  TextInput
+ } from 'react-native';
 import { connect } from 'react-redux';
-import { wordChanged, inputEnd } from '../actions';
+import { wordChanged, saveSearchResult } from '../actions';
+import { Actions } from 'react-native-router-flux';
 
 class SearchBar extends Component {
 
+  state = {
+    "searchHistory":[]
+  }
+
+  componentDidMount(){
+    AsyncStorage.getItem('searchHistory') //当該のキーがなければ(catchされるのではなく)nullが返る
+      .then(req => {
+        JSON.parse(req) //req初期値はnull
+        // console.log("req",req)
+        this.setState({"searchHistory":
+          ( req === null ? [] : JSON.parse(req) )
+        })
+        // console.log(this.state)
+      })
+      .catch(error => console.log('error!'));
+  }
+
   onWordChange(word){
+    console.log("onWordChange(word){")
+    console.log("word", word)
     this.props.wordChanged(word);
   };
 
-  onInputEnd(word){
-    this.props.inputEnd(word);
+  onEndEditing() { //onSubmitEditingはthisにtextを持たない。onWordChangeの入力結果をもらう必要がある。
+
+    const timestamp = String(Date.now())
+    const json = {}
+    json[timestamp] = this.props.inputtingWord
+    console.log("json",json)
+    console.log("this.state",this.state)
+    this.state["searchHistory"].push(json)
+    AsyncStorage.setItem('searchHistory',JSON.stringify(this.state["searchHistory"]));
+    console.log("AsyncStorage.getItem(searchHistory)",AsyncStorage.getItem("searchHistory"))
+
+    searchResult = this.searchInfo( this.props.inputtingWord )
+    console.log("this is searchResult,", searchResult)
+
+    this.props.saveSearchResult(searchResult)
+    Actions.list();
   };
+
+  searchInfo(word){
+    console.log("searching ",word)
+
+    searchResult = []
+
+      localData = this.props.localData
+      rg = word.trim().replace(/\s+/g, '|')
+      console.log("this is localdata,",localData)
+      console.log("this is localdata.keys(),",localData.keys())
+      console.log("this is word and  rg",word,rg)
+      console.log("localDataKeys",localDataKeys)
+
+      localDataKeys.map( key => {
+        console.log("in localData.map( category => {")
+        localData[key]["data"].map( record => {
+            console.log('category["data"].map( record => {')
+
+          if ( record["text"].search(rg) != -1 ){
+            console.log("true!!!!")
+            searchResult.push(record);
+            return true; //mapだとこれで擬似breakできない,someだとできた
+          }
+        })
+      })
+
+    return searchResult
+  }
+
+
+
 
   render(){
     const {containerStyle, shironukiStyle, pictStyle, inputStyle} = styles
@@ -27,7 +98,7 @@ class SearchBar extends Component {
             placeholder="なにかお困りですか？"
             autoCorrect={false}
             onChangeText={this.onWordChange.bind(this)}
-            onEndEditing={this.onInputEnd.bind(this)}
+            onEndEditing={() => this.onEndEditing()}
             value={this.props.inputtingWord}
             style={inputStyle}
           />
@@ -38,7 +109,7 @@ class SearchBar extends Component {
 };
 
 
-
+const localDataKeys = [ "facilities-info", "health", "subsidy", "welfare", "facility", "news"]
 
 const styles = {
   containerStyle: {
@@ -72,11 +143,13 @@ const styles = {
   }
 };
 
-const mapStateToProps = ({ search }) => {
-  const { inputtingWord } = search;
-  return { inputtingWord };
+const mapStateToProps = ( state ) => {
+  console.log("state",state)
+  const { inputtingWord } = state.Search;
+  const { localData } = state.Init;
+  return { inputtingWord, localData };
 };
 
 export default connect(mapStateToProps,{
-  wordChanged, inputEnd
+  wordChanged, saveSearchResult
 })(SearchBar);

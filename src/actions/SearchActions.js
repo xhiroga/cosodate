@@ -1,4 +1,3 @@
-import { Actions } from 'react-native-router-flux';
 // import {} from './types'; これはそのうちやる
 
 export const wordChanged = (word) => {
@@ -8,19 +7,9 @@ export const wordChanged = (word) => {
   };
 };
 
-export const inputEnd = (word) => {
+export const saveSearchResult = (searchResult) => {
   return (dispatch) => {
-    // 検索ワードを時間をプロパティにして検索ワード一覧に追加する
-    dispatch({
-      type: "inputEnd",
-      payload: word
-    })
-    // 検索結果一覧を生成する
-    // 検索結果画面に遷移する
-    move(dispatch);
+    dispatch({ type: "setSelectedList", payload: searchResult})
+    dispatch({ type: "setTopMode", payload: "search" })
   };
-};
-
-const move = (dispatch) =>{
-  Actions.list();
 };

@@ -1,12 +1,13 @@
 {
   "region": "japan-tokyo-mitaka",
-  "category":"info",
+  "category":"health",
   "lang":"jp",
   "data":[
     {
-      "category":"info",
+      "key":"japan-tokyo-mitaka_health_jp_1",
+      "label":"1",
+      "category":"health",
       "name": "妊娠届と母子健康手帳",
-      "type":"health",
       "text":"妊娠したら妊娠届を出して、母子健康手帳（A6の手帳）の交付を受けてください。",
       "contact":"",
       "link": "http://www.city.mitaka.tokyo.jp/c_service/001/001046.html",
@@ -16,9 +17,10 @@
       "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     },
     {
-      "category":"info",
+      "key":"japan-tokyo-mitaka_health_jp_2",
+      "label":"2",
+      "category":"health",
       "name": "妊婦健康診査",
-      "type":"health",
       "text":"三鷹市では妊婦さんが適切な時期に妊婦健康診査を受け、安心して出産を迎えられるよう、妊婦健康診査の検査費用の一部を助成します。",
       "contact":"",
       "link": "http://www.city.mitaka.tokyo.jp/c_service/016/016520.html",
@@ -28,9 +30,10 @@
       "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     },
     {
-      "category":"info",
+      "key":"japan-tokyo-mitaka_health_jp_3",
+      "label":"3",
+      "category":"health",
       "name": "妊婦歯科健康診査",
-      "type":"health",
       "text":"三鷹市では、平成22年4月から妊婦さんの歯科健診を地域の協力歯科医院にて受けられるようになります。",
       "contact":"",
       "link": "http://www.city.mitaka.tokyo.jp/c_service/039/039748.html",
@@ -40,9 +43,10 @@
       "move_in":"false","disabilities":"false","sick":"false","economic":"false"
     },
     {
-      "category":"info",
+      "key":"japan-tokyo-mitaka_health_jp_4",
+      "label":"4",
+      "category":"health",
       "name": "産後早期のお母さんの心の相談",
-      "type":"health",
       "text":"産後1か月目のお母さんを対象に、お母さんの気持ちなど心の健康についてお手紙により確認し、必要に応じて助産師・保健師による電話相談、家庭訪問をおこないます。",
       "contact":"",
       "link": "http://www.city.mitaka.tokyo.jp/c_service/001/001050.html",

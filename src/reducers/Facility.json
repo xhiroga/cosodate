@@ -5,6 +5,7 @@
   "data":[
     {
       "key":"japan-tokyo-mitaka_facility_jp_1",
+      "label":"1",
       "category":"facility",
       "type": "認可保育園",
       "name": "大沢台保育園",
@@ -18,6 +19,7 @@
     },
     {
       "key":"japan-tokyo-mitaka_facility_jp_2",
+      "label":"2",
       "category":"facility",
       "type": "認可保育園",
       "name": "南浦東保育園",
@@ -31,6 +33,7 @@
     },
     {
       "key":"japan-tokyo-mitaka_facility_jp_3",
+      "label":"3",
       "category":"facility",
       "type": "認可保育園",
       "name": "山中保育園",
@@ -44,6 +47,7 @@
     },
     {
       "key":"japan-tokyo-mitaka_facility_jp_4",
+      "label":"4",
       "category":"facility",
       "type": "幼稚園",
       "name": "三鷹幼稚園",
@@ -57,6 +61,7 @@
     },
     {
       "key":"japan-tokyo-mitaka_facility_jp_5",
+      "label":"5",
       "category":"facility",
       "type": "児童館・むらさき子どもひろば",
       "name": "東児童館",
@@ -70,6 +75,7 @@
     },
     {
       "key":"japan-tokyo-mitaka_facility_jp_6",
+      "label":"6",
       "category":"facility",
       "type": "児童館・むらさき子どもひろば",
       "name": "西児童館",
@@ -83,6 +89,7 @@
     },
     {
       "key":"japan-tokyo-mitaka_facility_jp_7",
+      "label":"7",
       "category":"facility",
       "type": "児童館・むらさき子どもひろば",
       "name": "むらさき子どもひろば",

@@ -6,20 +6,21 @@ const InfoItem = (props) => {
 
   console.log("here InfoItem, props->", props);
 
-  const {name, author, date, text, link} = props.info;
+  const {key, name, author, date, text, link} = props.info;
   // 別に受け取れなくてもエラーは出ない
 
-  // 本当はnameをkeyにとかやっちゃダメなんですけど
   return (
-    <TouchableHighlight key={name} underlayColor={'#f3f3f2'} onPress = {()=>Actions.info({ info: props.info })}>
+    <TouchableHighlight key={key} underlayColor={'#f3f3f2'} onPress = {()=>Actions.info({ info: props.info })}>
       <View style={styles.rowContainer}>
 
           <View style={styles.rowDetailsContainer}>
               <Text style={styles.rowname}>
                   {name}
               </Text>
-              <Text style={styles.rowDetailsLine}>
-                  Posted by {author} | {date}
+              <Text
+                numberOfLines={2}
+                style={styles.rowDetailsLine}>
+                  {text}
               </Text>
               <View style={styles.separator}/>
           </View>

@@ -4,7 +4,8 @@ import {
   ScrollView,
   TouchableOpacity,
   Text,
-  Image
+  Image,
+  Picker
  } from 'react-native';
 import { connect } from 'react-redux'
 
@@ -27,31 +28,10 @@ class Home extends Component {
     this.props.fetchAndStoreData(); //jsonをリストに格納して渡す
   }
 
-
-  renderStageItems(){
-    const stages = {
-      "ninsin":require("../img/btn_ninshini_on.gif"),
-      "zerosai":require("../img/btn_zerosai_on.gif"),
-      "ichisai":require("../img/btn_ichisai_on.gif"),
-      "nisai":require("../img/btn_nisai_on.gif"),
-      "sansai":require("../img/btn_sansai_on.gif"),
-      "yonsai":require("../img/btn_yonsai_on.gif"),
-      "gosai":require("../img/btn_gosai_on.gif"),
-      "syougakusei":require("../img/btn_syougakusei_on.gif"),
-    }
-    const stageKeys = [
-      "ninsini","zerosai","ichisai","nisai","sansai","yonsai","gosai","syougakusei"
-    ]
-    return stageKeys.map( key =>
-      this.renderImageButton(key,stages[key],this.onNaviPress(key))
-    );
-  }
-
-
   renderImageButton(key,source,onPress){
     return(
       <TouchableOpacity
-        ket={key}
+        key={key}
         onPress={onPress}
         style={{paddingLeft:5,paddingRight:5,}}
       >
@@ -75,13 +55,15 @@ class Home extends Component {
     console.log("here curateInfo,", block)
     curatedData = []
 
+    localData = this.props.localData
+    subBlocks = conveter[block]
     localDataKeys.map( key => {
-      // console.log("key",key)
-      // console.log("this.props.localData",this.props.localData)
-      localData = this.props.localData
-      subBlocks = conveter[block]
+      console.log("key",key)
+      console.log("this.props.localData",this.props.localData)
 
-      if (localData[key]["category"] == "info"){
+      console.log('localData[key]["category"]',localData[key]["category"])
+      if ( -1 != ["facilities-info","health","subsidy","welfare"].indexOf(localData[key]["category"]) ){
+        console.log("loop!")
         localData[key]["data"].map( record => {
           subBlocks.some ( subBlock => {
             if ( record[subBlock] == "true"){
@@ -97,8 +79,23 @@ class Home extends Component {
     return curatedData
   }
 
-  searchInfo(){
-    console.log("ここではsearchして結果を納めるだけ。非同期的にlistに移動する")
+  renderStageItems(){
+    const stages = {
+      "ninsin":require("../img/btn_ninshini_on.gif"),
+      "zerosai":require("../img/btn_zerosai_on.gif"),
+      "ichisai":require("../img/btn_ichisai_on.gif"),
+      "nisai":require("../img/btn_nisai_on.gif"),
+      "sansai":require("../img/btn_sansai_on.gif"),
+      "yonsai":require("../img/btn_yonsai_on.gif"),
+      "gosai":require("../img/btn_gosai_on.gif"),
+      "syougakusei":require("../img/btn_syougakusei_on.gif"),
+    }
+    const stageKeys = [
+      "ninsini","zerosai","ichisai","nisai","sansai","yonsai","gosai","syougakusei"
+    ]
+    return stageKeys.map( key =>
+      this.renderImageButton(key,stages[key],this.onNaviPress(key))
+    );
   }
 
   renderPurposeItems(){
@@ -123,10 +120,6 @@ class Home extends Component {
   }
 // this.onHoge()すると、ロード時に即効呼んでしまう。this.onHoge.bind()が必要
 // 要するに、関数が格納された変数を渡せよ、ということだろう。bind.this()は関数を返すと推察。
-
-  generateListByPurpose(purpose) {
-    data = this.props.data
-  }
 
   render (){
     return(
@@ -162,8 +155,8 @@ class Home extends Component {
               {TEXTS["setting"][this.props.lang]}
             </Text>
           </View>
-          <View style={{paddingTop:5,paddingBottom:5}}>
-
+          <View style={{paddingTop:5,paddingBottom:5,flexDirection:"row"}}>
+            <Text style={{ flex:1 }}>言語設定</Text>
           </View>
         </View>
 
@@ -173,7 +166,7 @@ class Home extends Component {
 };
 // TODO: テキストの呼び出し方に改良の余地ないか？特にlang
 
-const localDataKeys = [ "Info_Facilities", "Info_Health", "Info_Subsidies", "Info_Welfare", "Facilities", "News"]
+const localDataKeys = [ "facilities-info", "health", "subsidy", "welfare", "facility", "news"]
 
 // 目的別の大目的を小目的に読み替え表
 const conveter = {

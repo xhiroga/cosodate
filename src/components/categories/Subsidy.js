@@ -8,32 +8,6 @@ import { moveSubsidySection } from '../../actions'
 
 class Subsidy extends Component {
 
-  componentWillMount(){
-    this.dataSource = []
-
-    this.props.localData["Facilities"]["data"].map( facility => {
-      if (facility["type"] === this.props.info.name){
-        this.dataSource.push(facility)
-      }
-    })
-    // console.log(this.dataSource)
-  }
-
-  renderTile(facility) {
-    return(
-      <View style={styles.tileStyle} key={facility.key}>
-        <Image
-          style={styles.imageStyle}
-          source={{ uri: facility.image_url }}
-        >
-        </Image>
-        <Text style={{ marginTop:3, }}>
-          { facility.name }
-        </Text>
-      </View>
-    )
-  }
-
   renderTab(section) {
 
     let tabStyle = [styles.normalTabStyle]

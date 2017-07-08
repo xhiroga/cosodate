@@ -7,7 +7,7 @@ class Facilities extends Component {
   componentWillMount(){
     this.dataSource = []
 
-    this.props.localData["Facilities"]["data"].map( facility => {
+    this.props.localData["facility"]["data"].map( facility => {
       if (facility["type"] === this.props.info.name){
         this.dataSource.push(facility)
       }

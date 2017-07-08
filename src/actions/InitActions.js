@@ -1,10 +1,10 @@
 // 開発期間はローカルからとってる
 
-import Info_Facilities from '../reducers/Info_Facilities.json'
-import Info_Health from '../reducers/Info_Health.json'
-import Info_Subsidies from '../reducers/Info_Subsidies.json'
-import Info_Welfare from '../reducers/Info_Welfare.json'
-import Facilities from '../reducers/Facilities.json'
+import Facilities_Info from '../reducers/Facilities-Info.json'
+import Health from '../reducers/Health.json'
+import Subsidy from '../reducers/Subsidy.json'
+import Welfare from '../reducers/Welfare.json'
+import Facility from '../reducers/Facility.json'
 import News from '../reducers/News.json'
 
 export const fetchAndStoreData = () => {
@@ -17,12 +17,12 @@ export const fetchAndStoreData = () => {
 
   localData = []
 
-  localData["Info_Facilities"] = Info_Facilities
-  localData["Info_Health"] = Info_Health
-  localData["Info_Subsidies"] = Info_Subsidies
-  localData["Info_Welfare"] = Info_Welfare
-  localData["Facilities"] = Facilities
-  localData["News"] = News
+  localData["facilities-info"] = Facilities_Info
+  localData["health"] = Health
+  localData["subsidy"] = Subsidy
+  localData["welfare"] = Welfare
+  localData["facility"] = Facility
+  localData["news"] = News
 
   return { type: "storeDataOnLocal", payload: localData }
 }
