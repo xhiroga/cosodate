@@ -69,13 +69,9 @@ const renderCategorizedContent = (props) => {
     case "welfare":
       return
     case "facility": // == category
-      return <Text>
-        {props.info.name}
-      </Text>
+      return <Text>{props.info.name}</Text>
     case "news": // == category
-      return <Text>
-        {props.info.name}
-      </Text>
+      return <Text>{props.info.name}</Text>
   }
 }
 
