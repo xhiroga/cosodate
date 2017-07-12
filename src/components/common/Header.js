@@ -1,16 +1,16 @@
 // Import libraries for making a component
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { View, Text } from 'react-native';
 
 // Make a component
 const Header = (props) => {
-  
+
   return (
-    <ScrollView style={styles.containerStyle}>
+    <View style={props.style, styles.containerStyle}>
       <Text style={styles.textStyle}>
         {props.topText}
       </Text>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -18,11 +18,10 @@ const styles = {
   containerStyle: {
     backgroundColor: '#fff',
     padding: 5,
-    borderColor: '#C43B30',
+    alignItems: 'center',
     borderBottomWidth: 1,
     position: 'relative',
     shadowColor: '#000',
-    flex:1,
   },
   textStyle: {
     color: '#000',
@@ -31,7 +30,6 @@ const styles = {
     fontSize: 20,
     fontWeight: 'bold',
     lineHeight: 23,
-    flex: 1,
   }
 }
 

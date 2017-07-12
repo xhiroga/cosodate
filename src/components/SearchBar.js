@@ -98,7 +98,7 @@ class SearchBar extends Component {
             placeholder="なにかお困りですか？"
             autoCorrect={false}
             onChangeText={this.onWordChange.bind(this)}
-            onEndEditing={() => this.onEndEditing()}
+            onSubmitEditing={() => this.onEndEditing()}
             value={this.props.inputtingWord}
             style={inputStyle}
           />

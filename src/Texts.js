@@ -36,7 +36,76 @@ export const TEXTS =
     "en":"Procedure",
     "jp":"認定後",
   },
+  "privateImpressions":{
+    "en":"Your View",
+    "jp":"あなたのアクセス回数",
+  },
+  "lastBrowse":{
+    "en":"Last View",
+    "jp":"最後にアクセスした時間",
+  },
+  "home":{
+    "en":"HOME",
+    "jp":"ホーム",
+  },
+  "list":{
+    "en":"LIST",
+    "jp":"リスト",
+  },
+  "info":{
+    "en":"INFO",
+    "jp":"情報",
+  },
+  "pre_mom":{
+    "en":"PRE-MOM",
+    "jp":"プレママ",
+  },
+  "welfare":{
+    "en":"WELFARE",
+    "jp":"福祉",
+  },
+  "life":{
+    "en":"LIFE",
+    "jp":"生活",
+  },
+  "childcare_education":{
+    "en":"CHILDCARE&EDUCATION",
+    "jp":"保育・教育",
+  },
+  "tummy":{
+    "en":"TUMMY",
+    "jp":"妊娠",
+  },
+  "age0":{
+    "en":"0 YEARS OLD",
+    "jp":"0歳",
+  },
+  "age1":{
+    "en":"1 YEARS OLD",
+    "jp":"1歳",
+  },
+  "age2":{
+    "en":"2 YEARS OLD",
+    "jp":"2歳",
+  },
+  "age3":{
+    "en":"3 YEARS OLD",
+    "jp":"3歳",
+  },
+  "age4":{
+    "en":"4 YEARS OLD",
+    "jp":"4歳",
+  },
+  "age5":{
+    "en":"5 YEARS OLD",
+    "jp":"5歳",
+  },
+  "over6":{
+    "en":"OVER 6 YEARS OLD",
+    "jp":"小学生",
+  },
 };
+
 
 // そのうち「easy japanese」作りたい
 // 日本語を簡単日本語に変換するAPIないだろうか。

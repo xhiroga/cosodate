@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
+// Googleアプリ風にコンテンツの枠を作るために使用
 const Card = (props) => {
   return (
     <View style={styles.containerStyle}>
@@ -11,6 +12,7 @@ const Card = (props) => {
 
 const styles = {
   containerStyle: {
+    backgroundColor: '#fff',
     borderWidth: 1,
     borderRadius: 2,
     borderColor: '#ddd',

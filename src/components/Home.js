@@ -15,6 +15,7 @@ import {
   move2List,
 } from '../actions'
 import { TEXTS } from '../Texts'
+import s from './styles';
 
 class Home extends Component {
 
@@ -22,9 +23,7 @@ class Home extends Component {
   // ここでは1.と2.をやる。
   componentWillMount() {
     // 将来的にはここで所属自治体リストと第一言語を渡してからaxiosで取得する
-    console.log('here App. next fetching data and make localStorage and save it');
 
-    console.log(this.props.fetchAndStoreData)
     this.props.fetchAndStoreData(); //jsonをリストに格納して渡す
   }
 
@@ -40,19 +39,14 @@ class Home extends Component {
     )
   }
 
-
-  onNaviPress( block ) {
-    //この行に何か書いたらjsxの解釈時に実行される。注意。
+  onNaviPress(key) {
     return () => {
-      console.log("here in onPurposePress, ", this.props.localData)
-      curatedData = this.curateInfo( block )
-      this.props.move2List(topTexts[block],curatedData);
+      curatedData = this.curateInfo( key )
+      this.props.move2List(key, curatedData);
     }
-  } // 匿名関数を返せばjsxのロード時にonPressが暴発しない
-
+  }
 
   curateInfo( block ) {
-    console.log("here curateInfo,", block)
     curatedData = []
 
     localData = this.props.localData
@@ -81,17 +75,17 @@ class Home extends Component {
 
   renderStageItems(){
     const stages = {
-      "ninsin":require("../img/btn_ninshini_on.gif"),
-      "zerosai":require("../img/btn_zerosai_on.gif"),
-      "ichisai":require("../img/btn_ichisai_on.gif"),
-      "nisai":require("../img/btn_nisai_on.gif"),
-      "sansai":require("../img/btn_sansai_on.gif"),
-      "yonsai":require("../img/btn_yonsai_on.gif"),
-      "gosai":require("../img/btn_gosai_on.gif"),
-      "syougakusei":require("../img/btn_syougakusei_on.gif"),
+      "tummy":require("../img/btn_ninshini_on.gif"),
+      "age0":require("../img/btn_zerosai_on.gif"),
+      "age1":require("../img/btn_ichisai_on.gif"),
+      "age2":require("../img/btn_nisai_on.gif"),
+      "age3":require("../img/btn_sansai_on.gif"),
+      "age4":require("../img/btn_yonsai_on.gif"),
+      "age5":require("../img/btn_gosai_on.gif"),
+      "over6":require("../img/btn_syougakusei_on.gif"),
     }
     const stageKeys = [
-      "ninsini","zerosai","ichisai","nisai","sansai","yonsai","gosai","syougakusei"
+      "tummy","age0","age1","age2","age3","age4","age5","over6"
     ]
     return stageKeys.map( key =>
       this.renderImageButton(key,stages[key],this.onNaviPress(key))
@@ -100,20 +94,20 @@ class Home extends Component {
 
   renderPurposeItems(){
     const purpose = {
-      "premama":require("../img/bg_premama.gif"),
-      "fukushi":require("../img/bg_fukushi.gif"),
-      "seikatu":require("../img/bg_seikatu.gif"),
-      "hokyo":require("../img/bg_hokyo.gif")
+      "pre_mom":require("../img/bg_premama.gif"),
+      "welfare":require("../img/bg_fukushi.gif"),
+      "life":require("../img/bg_seikatu.gif"),
+      "childcare_education":require("../img/bg_hokyo.gif")
     }
     return (
       <View style={{  }}>
         <View style={{ flexDirection:'row', height:120 }}>
-          {this.renderImageButton("premama", purpose["premama"], this.onNaviPress("premama") )}
-          {this.renderImageButton("fukushi", purpose["fukushi"], this.onNaviPress("fukushi") )}
+          {this.renderImageButton("pre_mom", purpose["pre_mom"], this.onNaviPress("pre_mom") )}
+          {this.renderImageButton("welfare", purpose["welfare"], this.onNaviPress("welfare") )}
         </View>
         <View style={{ flexDirection:'row', height:120 }}>
-          {this.renderImageButton("seikatu", purpose["seikatu"], this.onNaviPress("seikatu") )}
-          {this.renderImageButton("hokyo", purpose["hokyo"], this.onNaviPress("hokyo") )}
+          {this.renderImageButton("life", purpose["life"], this.onNaviPress("life") )}
+          {this.renderImageButton("childcare_education", purpose["childcare_education"], this.onNaviPress("childcare_education") )}
         </View>
       </View>
     )
@@ -123,7 +117,7 @@ class Home extends Component {
 
   render (){
     return(
-      <ScrollView>
+      <ScrollView style={s.wallStyle}>
         <SearchBar />
 
         <View style={{paddingBottom:5}}>
@@ -170,35 +164,18 @@ const localDataKeys = [ "facilities-info", "health", "subsidy", "welfare", "faci
 
 // 目的別の大目的を小目的に読み替え表
 const conveter = {
-  "ninsin" :["tummy"],
-  "zerosai" :["age0"],
-  "ichisai" :["age1"],
-  "nisai"   :["age2"],
-  "sansai"  :["age3"],
-  "yonsai"  :["age4"],
-  "gosai"   :["age5"],
-  "syougakusei":["over6"],
-  "premama":["pregnant","birth"],
-  "fukushi":["economic","disabilities"],
-  "seikatu":["move_in","sick"],
-  "hokyo":  ["nursery","kindergarten","school"]
-}
-
-// ナビ画面のトップの文字...本当は一箇所にまとめてグローバル化しておくべし
-const topTexts = {
-  "premama" :"プレママ",
-  "fukushi" :"福祉",
-  "seikatu" :"生活",
-  "hokyo"   :"教育・保険",
-  "ninsin" :"妊娠",
-  "zerosai" :"0歳",
-  "ichisai" :"1歳",
-  "nisai"   :"2歳",
-  "sansai"  :"3歳",
-  "yonsai"  :"4歳",
-  "gosai"   :"5歳",
-  "syougakusei":"小学生以上",
-
+  "tummy" :["tummy"],
+  "age0" :["age0"],
+  "age1" :["age1"],
+  "age2"   :["age2"],
+  "age3"  :["age3"],
+  "age4"  :["age4"],
+  "age5"   :["age5"],
+  "over6":["over6"],
+  "pre_mom":["pregnant","birth"],
+  "welfare":["economic","disabilities"],
+  "life":["move_in","sick"],
+  "childcare_education":  ["nursery","kindergarten","school"]
 }
 
 const mapStateToProps = ( state ) => {

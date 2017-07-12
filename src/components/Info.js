@@ -7,50 +7,35 @@ import {
   TouchableOpacity,
   Linking
 } from 'react-native'
+import { connect } from 'react-redux'
 import {Header} from './common'
 
 import {TEXTS} from '../Texts'
 
 import Facilities from './categories/Facilities'
 import Subsidy from './categories/Subsidy'
+import { setContentsMetaData2AsyncAndState } from '../actions'
+import s from './styles';
 
 class Info extends Component {
 
   componentDidMount() {
-    AsyncStorage.getItem('contentsMetaData'). //当該のキーがなければ(catchされるのではなく)nullが返る
-    then(req => {
-      this.setState({
-        'contentsMetaData': (req === null
-          ? {}
-          : JSON.parse(req)) //req初期値はnull, またparse前は文字列
-      })
-      if (typeof this.state['contentsMetaData'][this.props.info.key] === "undefined") {
-        this.state['contentsMetaData'][this.props.info.key] = {
-          privateImpressions: 0,
-          lastBrowse: 0
-        }
-      }
-      this.state['contentsMetaData'][this.props.info.key]['privateImpressions'] += 1
-      this.state['contentsMetaData'][this.props.info.key]['lastBrowse'] = String(Date.now())
-      AsyncStorage.setItem('contentsMetaData', JSON.stringify(this.state['contentsMetaData']));
-    }).catch(error => console.log('error!'));
+    this.props.setContentsMetaData2AsyncAndState(this.props.info.key)
   }
 
   render() {
     return (
-      <ScrollView style={{
-        flex: 1
-      }}>
+      <View style={{flex:1}}>
         <Header topText={this.props.info.name}/>
-
-        <View style={styles.contentStyle}>
-          {renderText(this.props)}
-          {renderCategorizedContent(this.props)}
-          {renderExternalLink(this.props)}
-          {renderContact(this.props)}
-        </View>
-
-      </ScrollView>
+        <ScrollView style={s.wallStyle}>
+          <View style={styles.contentStyle}>
+            {renderText(this.props)}
+            {renderCategorizedContent(this.props)}
+            {renderExternalLink(this.props)}
+            {renderContact(this.props)}
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 
@@ -120,6 +105,12 @@ const renderContact = (props) => {
   }
 }
 
+const mapStateToProps = state => {
+  const { contentsMetaData } = state.Info
+  return { contentsMetaData };
+  // react-reduxがconnectの引数state経由で渡したreducerの実行結果をmapしてclassに渡す、の意
+};
+
 const styles = {
   contentStyle: {
     margin: 18
@@ -149,4 +140,4 @@ const styles = {
   }
 };
 
-export default Info;
+export default connect(mapStateToProps, { setContentsMetaData2AsyncAndState })(Info);

@@ -1,27 +1,31 @@
-import React from 'react';
-import { Scene, Router } from 'react-native-router-flux';
+import React, { Component } from 'react';
+import { Actions, Scene, Router } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import Home from './components/Home';
 import List from './components/List';
 import Info from './components/Info';
+import { TEXTS } from './Texts'
+import { Text } from 'react-native'
 
 
-const RouterComponent = () => {
+class RouterComponent extends Component {
 
-  const { navigationBarTitleImageStyle } = styles
+  render(){
 
-  return (
-    <Router sceneStyle={{ paddingTop: 65 }}>
-      <Scene
-        key="container"
-        navigationBarTitleImage={require('./img/logoRe.gif')}
-        navigationBarTitleImageStyle={navigationBarTitleImageStyle}
-        >
-        <Scene key="home" component={Home} />
-        <Scene key="list" component={List} title="List" />
-        <Scene key="info" component={Info} title="Info" />
-      </Scene>
-    </Router>
-  );
+    const { regions, lang } = this.props
+    const { navigationBarTitleImageStyle } = styles
+
+    // ダイナミックにタイトルを変えたい。初期値をどう設定するかと、どう受け取るかを両立するのが難しい？
+    return (
+      <Router sceneStyle={{ paddingTop: 65 }}>
+        <Scene key="container" >
+          <Scene key="home" component={Home} title={TEXTS["home"][lang]}/>
+          <Scene key="list" component={List} getTitle={TEXTS[this.props.headerOfList="list"][lang]}/>
+          <Scene key="info" component={Info} getTitle={TEXTS[this.props.headerOfInfo="info"][lang]} />
+        </Scene>
+      </Router>
+    )
+  }
 };
 
 const styles = {
@@ -38,4 +42,10 @@ const styles = {
   }
 }
 
-export default RouterComponent;
+const mapStateToProps = state => {
+  const { regions, lang, headerOfList, headerOfInfo } = state.Init
+  return { regions, lang, };
+  // react-reduxがconnectの引数state経由で渡したreducerの実行結果をmapしてclassに渡す、の意
+};
+
+export default connect(mapStateToProps)(RouterComponent);
