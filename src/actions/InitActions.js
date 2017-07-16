@@ -33,7 +33,7 @@ export const openContentsMetaDataOnState = () => {
   return (dispatch) => {
     AsyncStorage.getItem('contentsMetaData') //当該のキーがなければ(catchされるのではなく)nullが返る
       .then(req => {
-        dispatch({ type: "setContentsMetaData", payload: (req === null ? {} : JSON.parse(req)) })
+        dispatch({ type: "setContentsMetaData", payload: (req === null ? [] : JSON.parse(req)) })
       })
       .catch(error => console.log('error!'));
   }

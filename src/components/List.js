@@ -73,7 +73,7 @@ class List extends Component {
 const mapStateToProps = state => {
   const { regions, lang, contentsMetaData } = state.Init // Initに紐付くreducerのdefaultが返ってくる。
   const {topMode, topText, selectedList } = state.Info
-  return {  regions, lang, contentsMetaData, topMode, topText, selectedList }
+  return { regions, lang, contentsMetaData, topMode, topText, selectedList }
   // react-reduxがconnectの引数state経由で渡したreducerの実行結果をmapしてclassに渡す、の意
 };
 
