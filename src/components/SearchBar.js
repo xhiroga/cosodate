@@ -77,11 +77,8 @@ class SearchBar extends Component {
           }
         })
       })
-
     return searchResult
   }
-
-
 
 
   render(){
@@ -144,7 +141,6 @@ const styles = {
 };
 
 const mapStateToProps = ( state ) => {
-  console.log("state",state)
   const { inputtingWord } = state.Search;
   const { localData } = state.Init;
   return { inputtingWord, localData };

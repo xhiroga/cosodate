@@ -23,7 +23,7 @@ class List extends Component {
   };
 
   componentWillReceiveProps(nextProps) {
-    this.setDataSource(nextProps);
+    this.setDataSource(nextProps)
   }
 
   setDataSource({ selectedList }) {
@@ -45,16 +45,17 @@ class List extends Component {
   }
 
   renderRow(info) {
-    let meta = []
-    if (typeof this.props.contentsMetaData === "undefined" || typeof this.props.contentsMetaData[info.key] === "undefined") {
-      meta = []
-    } else {
-      meta = this.props.contentsMetaData[info.key]
-    }
+    let targetMeta = []
+    console.log("contentsMetaData",this.props.contentsMetaData)
+    this.props.contentsMetaData.map( meta => {
+      if ( meta.key == info.key ){
+        targetMeta = meta
+      }
+    })
 
     return (
       <Card>
-        <FlavorItems info={info} meta={meta}/>
+        <FlavorItems info={info} meta={targetMeta}/>
       </Card>
     )
   }
@@ -63,15 +64,16 @@ class List extends Component {
     return (
       <ScrollView style={s.wallStyle}>
         {this.renderBar()}
-        <ListView dataSource={this.dataSource} renderRow={this.renderRow}/>
+        <ListView dataSource={this.dataSource} renderRow={this.renderRow} style={s.listViewPad}/>
       </ScrollView>
     )
   }
 }
 
 const mapStateToProps = state => {
-  const {topMode, topText, selectedList, contentsMetaData} = state.Info
-  return {topMode, topText, selectedList, contentsMetaData};
+  const { regions, lang, contentsMetaData } = state.Init // Initに紐付くreducerのdefaultが返ってくる。
+  const {topMode, topText, selectedList } = state.Info
+  return {  regions, lang, contentsMetaData, topMode, topText, selectedList }
   // react-reduxがconnectの引数state経由で渡したreducerの実行結果をmapしてclassに渡す、の意
 };
 

@@ -1,43 +1,46 @@
 import React, { Component } from 'react'
-import { Actions } from 'react-native-router-flux';
 import {Text, Image, View, TouchableOpacity, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 
-class Facilities extends Component {
+class Facility extends Component {
 
   componentWillMount(){
-    this.dataSource = []
-
-    this.props.localData["facility"]["data"].map( facility => {
-      if (facility["type"] === this.props.info.name){
-        this.dataSource.push(facility)
-      }
-    })
+    // this.dataSource = []
+    //
+    // this.props.localData["facility"]["data"].map( facility => {
+    //   if (facility["type"] === this.props.info.name){
+    //     this.dataSource.push(facility)
+    //   }
+    // })
     // console.log(this.dataSource)
   }
 
   renderTile(facility) {
-    return(
-      <TouchableOpacity style={styles.tileStyle} key={facility.key} onPress={()=>Actions.facility({info: facility, headerOfG: facility.name})}>
-        <Image
-          style={styles.imageStyle}
-          source={{ uri: facility.image_url }}
-        >
-        </Image>
-        <Text style={{ marginTop:3, }}>
-          { facility.name }
-        </Text>
-      </TouchableOpacity>
-    )
+    // return(
+    //   <View style={styles.tileStyle} key={facility.key}>
+    //     <Image
+    //       style={styles.imageStyle}
+    //       source={{ uri: facility.image_url }}
+    //     >
+    //     </Image>
+    //     <Text style={{ marginTop:3, }}>
+    //       { facility.name }
+    //     </Text>
+    //   </View>
+    // )
   }
 
   render() {
+
+    const { key,label,category,type,name,location,tel,open,close,text,image_url, } = this.props.info
+
     return(
       <View style={{marginTop: 18,}}>
+        <Image
+          style={styles.imageStyle}
+          source={{ uri: image_url }}
+        />
         <Text style={{marginBottom:6, fontSize:18}}>{ this.props.info.name }</Text>
-        <View style={styles.tileContainerStyle}>
-          { this.dataSource.map( facility => this.renderTile(facility)  ) }
-        </View>
       </View>
     )
   }
@@ -58,8 +61,8 @@ const styles = {
     // flexで指定するとwrapが効かなくなる
   },
   imageStyle: {
-    height: 240,
-    width: 150
+    height: 256,
+    width: 160
   },
 }
 
@@ -70,4 +73,4 @@ const mapStateToProps = ( state ) => {
 }
 
 
-export default connect(mapStateToProps)(Facilities)
+export default connect(mapStateToProps)(Facility)

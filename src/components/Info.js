@@ -13,6 +13,7 @@ import {Header} from './common'
 import {TEXTS} from '../Texts'
 
 import Facilities from './categories/Facilities'
+import Facility from './categories/Facility'
 import Subsidy from './categories/Subsidy'
 import { setContentsMetaData2AsyncAndState } from '../actions'
 import s from './styles';
@@ -25,17 +26,14 @@ class Info extends Component {
 
   render() {
     return (
-      <View style={{flex:1}}>
-        <Header topText={this.props.info.name}/>
-        <ScrollView style={s.wallStyle}>
-          <View style={styles.contentStyle}>
-            {renderText(this.props)}
-            {renderCategorizedContent(this.props)}
-            {renderExternalLink(this.props)}
-            {renderContact(this.props)}
-          </View>
-        </ScrollView>
-      </View>
+      <ScrollView style={s.wallStyle}>
+        <View style={styles.contentStyle}>
+
+          {renderCategorizedContent(this.props)}
+          {renderExternalLink(this.props)}
+          {renderContact(this.props)}
+        </View>
+      </ScrollView>
     )
   }
 
@@ -46,15 +44,30 @@ const renderCategorizedContent = (props) => {
 
   switch (category) {
     case "facilities-info":
-      return <Facilities info={props.info}/>
+      return (
+        <View>
+          {renderText(props)}
+          <Facilities info={props.info}/>
+        </View>
+      )
     case "health":
-      return
+      return renderText(props)
     case "subsidy":
-      return <Subsidy info={props.info}/>
+      return (
+        <View>
+          {renderText(props)}
+          <Subsidy info={props.info}/>
+        </View>
+      )
     case "welfare":
-      return
+      return renderText(props)
     case "facility": // == category
-      return <Text>{props.info.name}</Text>
+      return (
+        <View>
+          <Facility info={props.info} />
+          {renderText(props)}
+        </View>
+      )
     case "news": // == category
       return <Text>{props.info.name}</Text>
   }
@@ -106,7 +119,7 @@ const renderContact = (props) => {
 }
 
 const mapStateToProps = state => {
-  const { contentsMetaData } = state.Info
+  const { contentsMetaData } = state.Init
   return { contentsMetaData };
   // react-reduxがconnectの引数state経由で渡したreducerの実行結果をmapしてclassに渡す、の意
 };

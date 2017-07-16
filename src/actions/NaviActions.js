@@ -5,8 +5,6 @@ export const move2List = (topText, selectedList) => {
   return (dispatch) => {
     dispatch({ type: "setTopMode", payload: "navi" });
     dispatch({ type: "setSelectedList", payload: selectedList });
-    dispatch({ type: "setSHeaderOfList", payload: topText });
-    console.log("topText",topText)
     Actions.list({headerOfList:topText})
   }
 }

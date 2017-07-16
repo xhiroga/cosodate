@@ -44,6 +44,14 @@ export const TEXTS =
     "en":"Last View",
     "jp":"最後にアクセスした時間",
   },
+  "privateImpressions_short":{
+    "en":"View",
+    "jp":"アクセス回数",
+  },
+  "lastBrowse_short":{
+    "en":"Last",
+    "jp":"見た日",
+  },
   "home":{
     "en":"HOME",
     "jp":"ホーム",
@@ -55,6 +63,10 @@ export const TEXTS =
   "info":{
     "en":"INFO",
     "jp":"情報",
+  },
+  "facility":{
+    "en":"FACILITY",
+    "jp":"施設",
   },
   "pre_mom":{
     "en":"PRE-MOM",
@@ -103,6 +115,14 @@ export const TEXTS =
   "over6":{
     "en":"OVER 6 YEARS OLD",
     "jp":"小学生",
+  },
+  "recentView":{
+    "en":"RECENT VIEW",
+    "jp":"最近見たもの",
+  },
+  "oftenView":{
+    "en":"OFTEN VIEW",
+    "jp":"よく見るもの",
   },
 };
 

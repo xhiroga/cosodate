@@ -9,6 +9,7 @@ import Welfare from '../reducers/Welfare.json'
 import Facility from '../reducers/Facility.json'
 import News from '../reducers/News.json'
 
+
 export const fetchAndStoreData = () => {
   // ↓↓しばらくはローカルのjsonで代用する(linkdataにデータをアップするのが面倒だから)
   // axios.get('http://linkdata.org/api/1/rdf1s5226i/cosodate_mitaka_unofficial_rdf.json')
@@ -41,19 +42,28 @@ export const openContentsMetaDataOnState = () => {
 export const setContentsMetaData2AsyncAndState = ( key ) => {
   return (dispatch) => {
     AsyncStorage.getItem('contentsMetaData') //当該のキーがなければ(catchされるのではなく)nullが返る
-      .then(req => {
-         if (req === null){ return }
-         const contentsMetaData = JSON.parse(req) //req初期値はnull, またparse前は文字列
+      .then(req => { //req初期値はnull, またparse前は文字列
+        var contentsMetaData = []
 
-        if (typeof contentsMetaData[key] === "undefined") {
-          contentsMetaData[key] = {
-            privateImpressions: 0,
-            lastBrowse: 0
+        if (req !== null){
+          contentsMetaData = JSON.parse(req)
+        }
+        var existFlag = false
+
+        for (var i = 0; i < contentsMetaData; i++) {
+        var meta = contentsMetaData[i]
+          if (meta['key'] == key){
+            meta['privateImpressions'] += 1
+            meta['lastBrowse'] = String(Date.now())
+            existFlag = true
+            break
           }
         }
 
-        contentsMetaData[key]['privateImpressions'] += 1
-        contentsMetaData[key]['lastBrowse'] = String(Date.now())
+        if(existFlag === false){
+          contentsMetaData.push({ key: key, privateImpressions: 1, lastBrowse: String(Date.now()) })
+        }
+
         dispatch({ type: "setContentsMetaData", payload: contentsMetaData })
         AsyncStorage.setItem('contentsMetaData', JSON.stringify(contentsMetaData));
     }).catch(error => console.log('error!'));

@@ -4,7 +4,6 @@ const INITIAL_STATE = {
   topMode:      "",
   topText:      "",
   selectedList: [],
-  contentsMetaData: []
 }
 
 
@@ -16,8 +15,6 @@ export default (state = INITIAL_STATE, action) => {
       return{ ...state, topText: action.payload }
     case "setSelectedList":
       return{ ...state, selectedList: action.payload}
-    case "setContentsMetaData":
-      return{ ...state, contentsMetaData: action.payload}
 
     default:
       return state;

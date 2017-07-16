@@ -12,16 +12,13 @@ class FlavorItems extends Component {
   }
 
   epoch2DateString(str) {
-    // dt = new Date(str) <- fail. why?
-
     dt = new Date(0)
     dt.setUTCMilliseconds(str)
-    console.log(dt)
     return ((dt.getYear()+1900)+'/'+(dt.getMonth()+1)+'/'+dt.getDate())
   }
 
   renderMetaData() {
-    // expect this.state['contentsMetaData'][info.key] of List.js
+
     if ( typeof this.props.meta === "undefined" || this.props.meta.length === 0 ){
       return
     } else {
@@ -48,7 +45,7 @@ class FlavorItems extends Component {
     return (
       <TouchableHighlight
         key={key}
-        onPress={()=>Actions.info({ info: this.props.info })}
+        onPress={()=>Actions.info({ info: this.props.info, headerOfInfo: this.props.info.name })}
         style={styles.container}
         underlayColor={'#f3f3f2'}
       >
