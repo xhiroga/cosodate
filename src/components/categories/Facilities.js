@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import {
+  FlatList,
+  Image,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native'
 import { Actions } from 'react-native-router-flux';
-import {Text, Image, View, TouchableOpacity, FlatList } from 'react-native'
 import { connect } from 'react-redux'
 
 class Facilities extends Component {

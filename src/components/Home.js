@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import {
-  View,
+  Image,
   ListView,
   ScrollView,
-  TouchableOpacity,
   Text,
-  Image,
-  Picker
+  TouchableOpacity,
+  View,
  } from 'react-native';
 import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 
+import { TEXTS } from '../Texts'
 import SearchBar from './SearchBar';
 import {
   fetchAndStoreData,
@@ -18,7 +18,6 @@ import {
   openContentsMetaDataOnState,
 } from '../actions'
 import {Card} from './common';
-import { TEXTS } from '../Texts'
 import s from './styles';
 
 class Home extends Component {
@@ -44,17 +43,13 @@ class Home extends Component {
 
   // 悩み... propsが更新されるたびにこの処理が呼ばれるので、重くて仕方ない。
   curateOftenView({ localData, contentsMetaData }) {
-    console.log("localData, curatedData",localData, contentsMetaData)
     const oftenContents = []
 
     contentsMetaData.map( challenger => {
       if (oftenContents.length < 10) {
-        console.log("contentsMetaData[challenger]",)
         oftenContents.push(challenger)
       } else {
         oftenContents.map( (elite10, index) => {
-          console.log("valid",contentsMetaData[challenger]['privateImpressions'])
-
           if (challenger['privateImpressions'] > elite10['privateImpressions']){
             oftenContents.splice(index,1)
             oftenContents.push(challenger)
@@ -147,11 +142,11 @@ class Home extends Component {
     }
     return (
       <View style={{  }}>
-        <View style={{ flexDirection:'row', height:120 }}>
+        <View style={{ flexDirection:'row', justifyContent:'space-around', height:120}}>
           {this.renderImageButton("pre_mom", purpose["pre_mom"], this.onNaviPress("pre_mom") )}
           {this.renderImageButton("welfare", purpose["welfare"], this.onNaviPress("welfare") )}
         </View>
-        <View style={{ flexDirection:'row', height:120 }}>
+        <View style={{ flexDirection:'row', justifyContent:'space-around', height:120 }}>
           {this.renderImageButton("life", purpose["life"], this.onNaviPress("life") )}
           {this.renderImageButton("childcare_education", purpose["childcare_education"], this.onNaviPress("childcare_education") )}
         </View>
@@ -226,7 +221,7 @@ class Home extends Component {
 
         <View style={{paddingBottom:5}}>
           <Text style={s.statementText}>
-            {TEXTS["recentView"][this.props.lang]}
+            {TEXTS["oftenView"][this.props.lang]}
           </Text>
           <ScrollView>
             <ListView horizontal={true} dataSource={this.recentViewDS} renderRow={this.renderColumn} style={s.listViewPad} />
@@ -256,7 +251,6 @@ class Home extends Component {
     );
   }
 };
-// TODO: テキストの呼び出し方に改良の余地ないか？特にlang
 
 // <View style={{paddingTop:5,paddingBottom:5}}>
 //   <View style={{borderColor:"#C43B30", borderTopWidth:1, borderBottomWidth:1}}>
